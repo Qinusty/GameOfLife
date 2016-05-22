@@ -4,14 +4,15 @@ import copy
 
 class Board(object):
 
-    def __init__(self, size):
+    def __init__(self, size, test = False):
         super().__init__()
         self.size = size
         self.state = State(size)
         ## test settings
-        self.state.grid[int(size[0] / 2) - 1][int(size[1] / 2)] = True
-        self.state.grid[int(size[0] / 2)][int(size[1] / 2)] = True
-        self.state.grid[int(size[0] / 2) + 1][int(size[1] / 2)] = True
+        if test:
+            self.state.grid[size[0] // 2 - 1][size[1] // 2] = True
+            self.state.grid[size[0] // 2][size[1] // 2] = True
+            self.state.grid[size[0] // 2 + 1][size[1] // 2] = True
 
     def do_stuff(self):
         neighbours = []
@@ -26,13 +27,24 @@ class Board(object):
                 if self.state.grid[x][y]: ## if this pos alive
                     if neighbours[x][y] >= 4 or neighbours[x][y] <= 1:
                         self.state.grid[x][y] = False
-                elif neighbours[x][y] == 3:
+                elif neighbours[x][y] == 3: ## if dead BUT 3 neighbours. THEN GG, BIRTH
                     self.state.grid[x][y] = True
+
+    def modifyAtScreenPos(self, rect, xy, state):
+        left,top,w,h = rect
+        box_w = int(w / self.size[0])
+        box_h = int(h / self.size[1])
+        x,y = xy
+        x -= left
+        y -= top
+
+        self.state.grid[x//box_w][y//box_h] = state
 
     def draw(self, rect, display):
         left,top,w,h = rect
         box_w = int(w / self.size[0])
         box_h = int(h / self.size[1])
+
         for x in range(0,self.size[0]):
             for y in range(0,self.size[1]):
                 colour = (230,230,230)
