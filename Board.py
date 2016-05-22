@@ -1,13 +1,12 @@
 import pygame
-import copy
 
 
 class Board(object):
 
-    def __init__(self, size, test = False):
+    def __init__(self, size, test = False, init_grid=[]):
         super().__init__()
         self.size = size
-        self.state = State(size)
+        self.state = State(size, initial_grid=init_grid)
         ## test settings
         if test:
             self.state.grid[size[0] // 2 - 1][size[1] // 2] = True
