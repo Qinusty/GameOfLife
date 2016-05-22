@@ -14,7 +14,7 @@ game_display = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption("Conways game of life!")
 clock = pygame.time.Clock()
 
-board = Board((80,80), test=True)
+board = Board((40,40), test=True)
 
 cycles_per_second = 300
 setup = True
