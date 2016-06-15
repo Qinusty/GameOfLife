@@ -2,6 +2,13 @@
 My python implementation of John Conway's 'Game of life'.
 The UI is implemented using pygame and thus is a requirement for the game.
 
+# Running
+To run the game you need to install all of the dependencies.
+Game is tested and working with Python 3
+```
+python Engine.py
+```
+
 ## Controls
 - **Space** Toggles pause mode where you can draw on the grid.
 - **C** Clears the grid.
@@ -11,3 +18,6 @@ The UI is implemented using pygame and thus is a requirement for the game.
 - **RightClick** In pause mode this allows you to 'rub out' on the grid.
  
 Written and tested on Python version 3.4
+
+## Dependencies
+- Pygame
